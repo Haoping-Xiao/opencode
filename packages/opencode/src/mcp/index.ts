@@ -23,6 +23,7 @@ import { BusEvent } from "../bus/bus-event"
 import { Bus } from "@/bus"
 import { TuiEvent } from "@/cli/cmd/tui/event"
 import open from "open"
+import { McpContext } from "./context"
 
 export namespace MCP {
   const log = Log.create({ service: "mcp" })
@@ -330,14 +331,14 @@ export namespace MCP {
           name: "StreamableHTTP",
           transport: new StreamableHTTPClientTransport(new URL(mcp.url), {
             authProvider,
-            requestInit: mcp.headers ? { headers: mcp.headers } : undefined,
+            fetch: McpContext.createFetch(mcp.headers),
           }),
         },
         {
           name: "SSE",
           transport: new SSEClientTransport(new URL(mcp.url), {
             authProvider,
-            requestInit: mcp.headers ? { headers: mcp.headers } : undefined,
+            fetch: McpContext.createFetch(mcp.headers),
           }),
         },
       ]
