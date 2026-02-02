@@ -49,6 +49,7 @@ MCP Server (只收到匹配域名的 Cookie)
 | 文件 | 修改 |
 |------|------|
 | `mcp/index.ts` | transport 使用 `McpContext.createFetch()` |
+| `provider/provider.ts` | SDK fetch 使用 `RequestContext.createFetch()` |
 | `server/server.ts` | 添加 `requestContextMiddleware()` |
 | `flag/flag.ts` | 添加 3 个开发模式 flag |
 
