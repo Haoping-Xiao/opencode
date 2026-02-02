@@ -39,6 +39,7 @@ import { createVercel } from "@ai-sdk/vercel"
 import { createGitLab, VERSION as GITLAB_PROVIDER_VERSION } from "@gitlab/gitlab-ai-provider"
 import { ProviderTransform } from "./transform"
 import { Installation } from "../installation"
+import { RequestContext } from "../request-context"
 
 export namespace Provider {
   const log = Log.create({ service: "provider" })
@@ -1038,7 +1039,9 @@ export namespace Provider {
           }
         }
 
-        return fetchFn(input, {
+        // 使用 RequestContext.createFetch 注入 cookies（自动域名校验）
+        const contextFetch = RequestContext.createFetch(fetchFn)
+        return contextFetch(input, {
           ...opts,
           // @ts-ignore see here: https://github.com/oven-sh/bun/issues/16682
           timeout: false,

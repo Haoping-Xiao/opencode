@@ -30,6 +30,12 @@ export namespace Flag {
   export declare const OPENCODE_CLIENT: string
   export const OPENCODE_SERVER_PASSWORD = process.env["OPENCODE_SERVER_PASSWORD"]
   export const OPENCODE_SERVER_USERNAME = process.env["OPENCODE_SERVER_USERNAME"]
+  /** 本地开发模式：覆盖 cookie 来源 URL（用于指定 MCP 域名） */
+  export const OPENCODE_COOKIE_SOURCE_URL = process.env["OPENCODE_COOKIE_SOURCE_URL"]
+  /** 本地开发模式：注入 cookies */
+  export const OPENCODE_DEV_COOKIES = process.env["OPENCODE_DEV_COOKIES"]
+  /** 本地开发模式：注入 x-organization header */
+  export const OPENCODE_DEV_ORGANIZATION = process.env["OPENCODE_DEV_ORGANIZATION"]
 
   // Experimental
   export const OPENCODE_EXPERIMENTAL = truthy("OPENCODE_EXPERIMENTAL")
